@@ -1,0 +1,89 @@
+.THIS {
+    margin: 25px;
+}
+
+.THIS .design {
+    font-family: serif;
+    font-size: 20px;
+    top: 7%;
+    position: absolute;
+    margin-left:20px;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.THIS .txtinput {
+    margin-left:20px;
+    right: 75%; 
+    top: 60%;
+    font-size: 20px;
+    font-family: serif;
+    color: red;
+}
+
+.THIS .buttonMove {
+  margin-left: 20px;
+  position: absolute;
+  left: 60%;
+  top: 90px;
+  width: 17%;
+  font-family: serif;
+  font-size: 20px;
+  color: red;
+}
+
+.THIS .authId {
+    margin-left:20px;
+    color: red;
+    position: absolute;
+    left: 20%;
+    top: 50.4%;
+    font-size: 21px;
+    font-family: serif;
+}
+
+.THIS .work {
+    margin-left:20px;
+    color: red;
+    position: absolute;
+    left: 31%;
+    top: 62%;
+    font-size: 21px;
+    font-family: serif;    
+}
+
+.THIS .genre{
+    margin-left:20px;
+    color: red;
+    position: absolute;
+    left: 14.5%;
+    top: 73.9%;
+    font-size: 21px;
+    font-family: serif;
+}
+
+.THIS .isbn {
+    margin-left:20px;
+    color: red;
+    position: absolute;
+    left: 17%;
+    top: 84.9%;
+    font-size: 21px;
+    font-family: serif;
+}
+
+.THIS .headers {
+    margin-left:20px;
+    font-weight: bold;
+    font-style: oblique;
+    font-size: 20px;
+    font-family: serif;
+}
+
+.THIS .img {
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+    max-height: 300px;
+    margin-left: 15%;
+}

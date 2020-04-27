@@ -1,0 +1,13 @@
+.THIS {
+}
+
+.THIS .img1 {
+    height: auto; 
+    width: 50%; 
+    max-width: 200px; 
+    max-height: 200px;
+    display: block;
+    margin-left: 80%;
+    margin-right: auto;
+    
+}

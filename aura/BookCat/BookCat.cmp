@@ -1,0 +1,41 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" controller="restCalloutEx">
+    
+    <aura:attribute name = "name" type= "string" default = "018408428"/>
+    <aura:attribute name= "input" type = "string"/>
+    <aura:attribute name= "input2" type = "string"/>
+    <aura:attribute name= "input3" type = "string"/>
+    <aura:attribute name= "input4" type = "string"/>
+    <aura:attribute name="button" type="string" default="Search" />
+    <aura:attribute name="title" type="string" default="Author Search:"/>
+    <aura:attribute name="ms1" type="string"/>
+    <aura:attribute name="ms2d" type= "string"/>
+                    
+    
+    
+    
+   <div class = "slds-grid slds-wrap">
+       <div class="slds-col slds-size_1-of-2">
+    <lightning:card ><div class= "design"> {!v.title}</div> 
+        <br/>    
+    <aura:set attribute="actions">
+      <lightning:input value = "{!v.name}" name="name" class= "txtinput"/>
+        <br/>
+      <lightning:button class= "buttonMove" variant="brand-outline" label="{!v.button}" title="search" onclick="{!c.onClick }"/>
+    </aura:set>  
+           <hr></hr>
+           <br/>
+        <div class = "headers">Author Id:</div> <div class="authId">{!v.name} </div>
+           <br/>
+        	<div class = "headers">Author and Work:</div> <div class="work">{!v.input2}</div>
+            <br/>
+        	<div class = "headers">Genre:</div> <div class="genre">{!v.input3}</div> 
+            <br/>
+        	<div class = "headers">ISBN #: </div> <div class="isbn">{!v.input4}</div>
+            <br/>
+         </lightning:card>
+           </div>
+       <div class ="slds-col slds-size_1-of-2">
+           <div class ="img"><img src="{!$Resource.Dracula_cover}"/> </div>
+       </div>
+  </div>
+</aura:component>

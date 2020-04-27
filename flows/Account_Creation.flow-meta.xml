@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <description>checks to see if the user has an account or not.</description>
+        <name>Do_you_have_an_Account</name>
+        <label>Do you have an Account</label>
+        <locationX>307</locationX>
+        <locationY>65</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Account_yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Already_have_an_Account</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>User_Account_verified</targetReference>
+            </connector>
+            <label>Account yes</label>
+        </rules>
+        <rules>
+            <name>Account_No</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Already_have_an_Account</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_the_Account</targetReference>
+            </connector>
+            <label>Account No</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Account Creation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account Creation</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <description>creates the account for user if they want one</description>
+        <name>Create_the_Account</name>
+        <label>Create the Account</label>
+        <locationX>304</locationX>
+        <locationY>285</locationY>
+        <connector>
+            <targetReference>Creation_Complete</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Account_Password__c</field>
+            <value>
+                <elementReference>Account_Password</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Account_Username</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <description>gets the account of the user (as they already have one)</description>
+        <name>User_Account_verified</name>
+        <label>User Account verified</label>
+        <locationX>470</locationX>
+        <locationY>68</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Welcome_back</targetReference>
+        </connector>
+        <filters>
+            <field>Account_Password__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Account_Password</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Account_Username</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <name>Create_Account_for_BookClub</name>
+        <label>Create Account for BookClub</label>
+        <locationX>161</locationX>
+        <locationY>51</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Do_you_have_an_Account</targetReference>
+        </connector>
+        <fields>
+            <name>Account_Username</name>
+            <dataType>String</dataType>
+            <fieldText>Account Username</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Account_Password</name>
+            <dataType>String</dataType>
+            <fieldText>Account Password</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Already_have_an_Account</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Already have an Account</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Creation_Complete</name>
+        <label>Creation Complete</label>
+        <locationX>497</locationX>
+        <locationY>232</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Thank_you_for_creating_account</name>
+            <fieldText>&lt;p&gt;Thank you for creating an Account with us! &lt;/p&gt;&lt;p&gt;We hope you will enjoy our discussions and events!&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Welcome_back</name>
+        <label>Welcome back</label>
+        <locationX>590</locationX>
+        <locationY>80</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Returned</name>
+            <fieldText>&lt;p&gt;Welcome back to your Account! &lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Return_Value</name>
+            <fieldText>&lt;p&gt;{!Account_Username}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Create_Account_for_BookClub</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+</Flow>

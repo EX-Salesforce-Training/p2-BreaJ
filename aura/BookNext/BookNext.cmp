@@ -1,0 +1,17 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" controller="restCalloutEx">
+    
+    <aura:attribute name= "name" type= "string" default = "018933745"/>
+    <aura:attribute name="button" type="string" default="Search" />
+    <aura:attribute name="title" type="string" default="Author Search:"/>
+    <aura:attribute name="ms1" type="string"/>
+    <aura:attribute name="ms2d" type= "string"/>
+                    
+    
+    
+    
+   <div class = "slds-grid slds-wrap">
+       <div class ="slds-col slds-size_1-of-2">
+           <div class ="img1"><img src="{!$Resource.Frankenstein_cover}"/> </div>
+       </div>
+  </div>	
+</aura:component>
